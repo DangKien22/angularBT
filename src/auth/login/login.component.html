@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card">
+    <h2 class="text-center text-white">Thông tin đăng nhập</h2>
+    <form [formGroup]="formData" (ngSubmit)="handleSubmit()">
+      <div class="col-12">
+          <span class="text-white">Tài khoản <span style="color: red">*</span></span>
+          <input pInputText type="text" class="w-full mt-2" formControlName="username" placeholder="Username"/>
+          <div style="margin-top: 5px">
+            <div *ngIf="formData.get('username')?.errors?.['required'] || formData.get('username')?.errors?.['invalidUsername']"
+              style="color: red"
+            >
+              {{ errorMsg["username"] }}
+            </div>
+          </div>
+      </div>
+      <div class="col-12">
+          <span class="text-white">Mật khẩu <span style="color: red">*</span></span>
+          <input pInputText type="password" class="w-full mt-2" formControlName="password" placeholder="Password"/>
+          <div style="margin-top: 5px">
+            <div *ngIf="formData.get('password')?.errors?.['required'] || formData.get('password')?.errors?.['invalidPassword']"
+              style="color: red"
+            >
+              {{ errorMsg["password"] }}
+            </div>
+          </div>
+      </div>
+      <div class="col-12 grid justify-content-between">
+        <div></div>
+        <span><a href="" class="text-white">Quên mật khẩu</a></span>
+      </div>
+      <div style="margin-top: 5px" class="col-12" *ngIf="errorMsg['common']">
+        <div
+          style="color: red"
+        >
+          {{ errorMsg["common"] }}
+        </div>
+      </div>
+      <div class="col-12">
+        <button pButton type="submit" class="w-full" label="Đăng nhập"></button>
+      </div>
+    </form>
+    <div class="flex justify-content-center mt-2">
+      <div class="flex text-white">
+        <span>Bạn không có tài khoản?</span
+        ><a href="" class="text-white">Đăng ký</a>
+      </div>
+    </div>
+  </div>
+</div>
