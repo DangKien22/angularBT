@@ -3,7 +3,7 @@ import { ButtonModule } from "primeng/button";
 import { PrimeNgModule } from "src/modules/primeng-module/primeng.module";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HomePageComponent } from "src/Pages/HomePage/HomePage.component";
+import { BooksComponent } from "../books/books.component";
 
 @NgModule({
     imports: [
@@ -14,7 +14,7 @@ import { HomePageComponent } from "src/Pages/HomePage/HomePage.component";
     ],
     declarations: [
         LoginComponent,
-        HomePageComponent
+        BooksComponent
     ],
 })
 
