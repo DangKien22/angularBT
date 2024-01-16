@@ -1,0 +1,18 @@
+<p-menubar [model]="menuItems">
+  <ng-template let-item pTemplate="start">
+    <p-button
+      *ngFor="let menuItem of item"
+      [label]="menuItem.label"
+      [icon]="menuItem.icon"
+      [routerLink]="menuItem.routerLink"
+      [styleClass]="menuItem.styleClass"
+      (click)="menuItem.command?.()"
+    ></p-button>
+  </ng-template>
+  <p-button
+    label="Logout"
+    icon="pi pi-power-off"
+    styleClass="p-button-danger"
+    (click)="logout()"
+  ></p-button>
+</p-menubar>

@@ -1,6 +1,146 @@
-<p>
-  books works!
-</p>
-<div class="col-12">
-  <button pButton (click)="logout()" class="w-full" label="Đăng Xuất"></button>
-  </div>
+<!-- <p-toast></p-toast>
+<div class="top-body">
+  <p-panel>
+    <div class="flex justify-content-between flex-wrap-btn">
+      <div class="custom-panel-header">Sách</div>
+      <button
+        type="button"
+        label="Thêm mới"
+        class="font-bold"
+        pButton
+      ></button>
+    </div>
+    <div class="grid mt-3">
+      <div class="col-12 flex justify-content-end align-items-center gap-2">
+        <div class="flex justify-content-end">
+          <span class="p-input-icon-right ml-auto">
+            <input
+              pInputText
+              placeholder="Mã đợt khám, tên đợt khám"
+              type="text"
+              class="custom-input-search"
+            />
+            <i class="pi pi-search"></i>
+          </span>
+        </div>
+        <button
+          icon="pi pi-filter"
+          pButton
+          class="custom-button-filter"
+        ></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="grid justify-content-between">
+        <div class="col-12 md:col-6 grid">
+          <div class="col-2">Tên sách</div>
+          <div class="col-10">
+            <input type="text" pInputText  />
+          </div>
+        </div>
+        <div class="col-12 md:col-6 grid">
+          <div class="col-2">Tác giả</div>
+          <div class="col-10">
+            <input type="text" pInputText />
+          </div>
+        </div>
+      </div>
+      <div class="grid justify-content-between">
+        <div class="col-12 md:col-6 grid">
+          <div class="col-2">Giá</div>
+          <div class="col-10">
+            <input type="text" pInputText/>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 grid">
+          <div class="col-2">Số lượng còn lại</div>
+          <div class="col-10">
+            <input type="text" pInputText/>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="col-12 flex justify-content-end">
+          <button
+            class="tool-min-width"
+            icon="pi pi-refresh"
+            pButton
+            type="button"
+            label="Làm mới"
+          ></button>
+          <button
+            class="tool-min-width font-bold"
+            pButton
+            type="button"
+            label="Tìm kiếm"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <div class="grid">
+        <div class="col-12">
+          <p-table
+            columnResizeMode="expand"
+            styleClass="p-datatable-gridlines"
+            responsiveLayout="scroll"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th scope="col" class="text-center" style="width: 5%">STT</th>
+                <th scope="col" style="width: 19%">Mã đợt khám</th>
+                <th scope="col" style="width: 19%">Tên đợt khám</th>
+                <th scope="col" style="width: 19%">Loại đợt khám</th>
+                <th scope="col" style="width: 19%">Mô tả</th>
+                <th scope="col" style="width: 19%">Thời gian thực hiện</th>
+                <th scope="col" style="width: 19%">Thao tác</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+              <tr>
+                <td class="text-center">{{  rowIndex + 1 }}</td>
+                <td>{{ row.code }}</td>
+                <td>{{ row.name }}</td>
+                <td>
+                  <ng-container *ngIf="row.type === 'OFFICIAL'">
+                    Chính thức
+                  </ng-container>
+                  <ng-container *ngIf="row.type === 'ADDITIONAL'">
+                    Bổ sung
+                  </ng-container>
+                </td>
+                <td>{{ row.description }}</td>
+                <td>{{ row.startDate | date : "dd'/'MM'/'yyyy" }} - {{ row.endDate | date : "dd'/'MM'/'yyyy" }}</td>
+                <td>
+                  <div class="flex gap-2 align-items-center">
+                    <i
+                      class="pi pi-eye p-2"
+                      style="font-size: 17px"
+                      pTooltip="Xem"
+                      tooltipPosition="left"
+                    ></i>
+                    <i
+                      class="pi pi-user-edit"
+                      style="font-size: 17px"
+                      pTooltip="Chỉnh sửa"
+                      tooltipPosition="left"
+                    ></i>
+                    <i
+                      class="pi pi-trash"
+                      style="font-size: 17px"
+                      pTooltip="Xóa"
+                      tooltipPosition="left"
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+  </p-panel>
+</div> -->
+<p>Books</p>

@@ -4,7 +4,7 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css']
+  styleUrls: ['./books.component.scss']
 })
 export class BooksComponent implements OnInit {
 
@@ -14,8 +14,4 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
   }
-  logout() {
-    this.service.fakeLogout()
-  }
-
 }

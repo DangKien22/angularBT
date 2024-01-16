@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { BooksComponent } from './books/books.component';
+import { TopMenuComponent } from './shared/components/layout/top-menu/top-menu.component';
 
 const routes: Routes = [
    {path: 'login', component: LoginComponent},
-   {path: '', component: BooksComponent, canActivate: [AuthGuard],
+   {path: 'books', component: BooksComponent, canActivate: [AuthGuard],
    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)}
 ];
 
