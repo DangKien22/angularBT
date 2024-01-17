@@ -8,16 +8,16 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class TopMenuComponent implements OnInit {
   menuItems = [
-    { label: 'Home', icon: 'pi pi-home' },
+    { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
     { label: 'Books', icon: 'pi pi-list', routerLink: '/books' },
     { label: 'About', icon: 'pi pi-info-circle' },
   ];
 
   constructor(
     private service: AuthService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   logout() {
     this.service.fakeLogout()
   }

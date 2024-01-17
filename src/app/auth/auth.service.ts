@@ -8,8 +8,8 @@ import { User } from './shared/models/user';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private http: HttpClient) {}
-  redirectUrl: string = ''; 
+  constructor(private router: Router, private http: HttpClient) { }
+  redirectUrl: string = '';
   isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }
@@ -19,7 +19,7 @@ export class AuthService {
       localStorage.setItem('currentUser', JSON.stringify(fakeUser));
       localStorage.setItem('authToken', 'fakeAuthToken');
       this.router.navigate(['/']);
-      return of({ 
+      return of({
         authToken: 'fakeAuthToken',
         role: 'user'
       });

@@ -1,2 +1,4 @@
-<app-top-menu></app-top-menu>
+<ng-container *ngIf="authService.isAuthenticated()">
+  <app-header></app-header>
+</ng-container>
 <router-outlet></router-outlet>
