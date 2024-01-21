@@ -1,0 +1,13 @@
+<p-toast></p-toast>
+<div class="content-dialog-delete">
+    <div class="flex align-items-center gap-2">
+        <i class="pi pi-question-circle" style="font-size: 17px"></i>
+        <p>
+            {{data.name}}
+        </p>
+    </div>
+    <div class="action-btn flex align-items-center justify-content-end text-align-center">
+        <button *ngIf="data?.no" (click)="handleCloseDialog()" pButton type="button" [label]="data?.no" style="background-color: #ddd;color:#333;text-transform:capitalize;"></button>
+        <button *ngIf="data?.ok" (click)="handleSubmitDialog()" pButton type="button" [label]="data?.ok" style="text-transform:capitalize;"></button>
+    </div>
+</div>

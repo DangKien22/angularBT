@@ -1,0 +1,22 @@
+.content-dialog-delete {
+    width: 500px;
+    padding-top: 10px;
+
+    p {
+        text-align: center;
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+    }
+}
+
+.action-btn {
+    margin-top: 10px;
+    gap: 20px;
+}
+
+::ng-deep .p-dialog-mask.p-component-overlay {
+    background: none;
+}

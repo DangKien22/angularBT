@@ -10,7 +10,7 @@ export class TopMenuComponent implements OnInit {
   menuItems = [
     { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
     { label: 'Books', icon: 'pi pi-list', routerLink: '/books' },
-    { label: 'About', icon: 'pi pi-info-circle' },
+    { label: 'User', icon: 'pi pi-info-circle', routerLink: '/admin-user' },
   ];
 
   constructor(

@@ -16,7 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
     ],
     declarations: [
         TopMenuComponent,
-        HeaderComponent
+        HeaderComponent,
     ],
     exports: [
         TopMenuComponent,

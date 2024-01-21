@@ -1,0 +1,133 @@
+<!-- <p-toast></p-toast> -->
+<div class="top-body">
+  <p-dialog
+    [modal]="true"
+    [(visible)]="isShow"
+    [draggable]="false"
+    (onHide)="onClose()"
+    [header]="titlePopUp"
+    [style]="{ width: '800px', height: 'auto' }"
+  >
+    <div class="mt-2 mb-0">
+      <h4>Thông tin User</h4>
+      <form [formGroup]="formData" (ngSubmit)="handleSubmit()">
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Tên đăng nhập<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="userName"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('userName')?.errors?.['required'] || formData.get('userName')?.errors?.['invaliduserName']"
+                style="color: red"
+              >
+                {{ errorMsg["userName"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Mật khẩu<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="password" class="w-full" formControlName="password"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('password')?.errors?.['required'] || formData.get('password')?.errors?.['invalidpassword']"
+                style="color: red"
+              >
+                {{ errorMsg["password"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Email<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="email"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('email')?.errors?.['required'] || formData.get('email')?.errors?.['invalidemail']"
+                style="color: red"
+              >
+                {{ errorMsg["email"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Họ Tên<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="name"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('name')?.errors?.['required'] || formData.get('name')?.errors?.['invalidname']"
+                style="color: red"
+              >
+                {{ errorMsg["name"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Số điện thoại<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="phoneNumber"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('phoneNumber')?.errors?.['required'] || formData.get('phoneNumber')?.errors?.['invalidphoneNumber']"
+                style="color: red"
+              >
+                {{ errorMsg["phoneNumber"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Địa chỉ<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="address"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('address')?.errors?.['required'] || formData.get('address')?.errors?.['invalidaddress']"
+                style="color: red"
+              >
+                {{ errorMsg["address"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div
+          class="grid align-items-center justify-content-center sm:justify-content-end col-12"
+        >
+          <button
+            style="
+              background: silver;
+              width: 136px !important;
+              color: #fff;
+              height: 36px !important;
+            "
+            pButton
+            type="button"
+            class="w-1 mr-2 text-center p-button-secondary"
+            label="Hủy"
+            (click)="onClose()"
+          ></button>
+          <button
+            style="width: 136px !important; height: 36px !important"
+            pButton
+            type="submit"
+            class="w-1 p-button-info text-center"
+            label="Lưu"
+            *ngIf="actionType === 'add' || actionType === 'edit'"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </p-dialog>
+</div>

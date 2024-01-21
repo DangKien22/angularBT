@@ -1,0 +1,25 @@
+:host ::ng-deep .custom-autocomplete .p-inputtext {
+    min-width: 470px;
+}
+
+p-autocomplete ::ng-deep i.pi-spinner {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .flex-cloumn {
+        flex-direction: column;
+
+        .item {
+            width: 100%;
+        }
+    }
+}
+
+:host ::ng-deep .p-calendar-w-btn {
+    margin-bottom: 5px;
+}
+
+.align-items {
+    align-items: baseline;
+}
