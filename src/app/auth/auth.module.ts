@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BooksComponent } from "../books/books.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminUserComponent } from "./admin-user/admin-user.component";
-import { AddAdminComponent } from "./add-admin/add-admin.component";
+import { AddAdminComponent } from "./admin-user/add-admin/add-admin.component";
 import { DialogModule } from "primeng/dialog";
 import { PopupDeleteComponent } from "./popup-delete/popup-delete.component";
 import { DialogService } from "primeng/dynamicdialog";
