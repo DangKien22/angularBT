@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   handleSubmit() {
-    const value = this.formData.value
+    const value = this.formData.value;
+    console.log({value})
     if (this.formData.valid) {
-      const { username, password } = this.formData.value;
-      this.service.fakeLogin({ username , password }).subscribe(
+      this.service.fakeLogin({userName: value.username, password: value.password}).subscribe(
         (response) => {
           console.log({response})
           if (response.authToken) {

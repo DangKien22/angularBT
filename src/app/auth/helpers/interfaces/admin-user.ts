@@ -5,4 +5,5 @@ export interface AdminUser {
     email?: string;
     phoneNumber?: number;
     address?: string;
+    password?: string;
 }

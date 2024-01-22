@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { msgAdminUser } from 'src/modules/enum/admin-user.enum';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PopupDeleteComponent } from 'src/app/auth/popup-delete/popup-delete.component';
+import { UserService } from '../user.service';
 
 interface MsgAdminUser {
   add: string;
@@ -30,7 +31,7 @@ export class AdminUserComponent
   itemSelect: any
 
   constructor(
-    private service: AuthService,
+    private service: UserService,
     public msg: MessageService,
     public title: Title,
     public dialogService: DialogService,
@@ -118,17 +119,35 @@ export class AdminUserComponent
       }
     })
   }
+  handleEditUser(params?: any, id?: string | number) {
+    this.service.updateUser(params, id).subscribe({
+      next: data => {
+        if(data){
+          this.getListUsers();
+          this.showMessageType('edit')
+        }
+      },
+      error: error => {
+        this.showMessage(mType.error, "Thất bại", error)
+      }
+    })
+  }
   handleShowMessage(ev?: any) {
     console.log(ev)
     if (this.actionType === 'add') {
       this.handleAddUser(ev);
-    } else if (this.actionType === 'delete') {
+    } 
+    if (this.actionType === 'delete') {
       this.handleShowDelete(ev)
+    }
+    if (this.actionType === 'edit') {
+      this.handleEditUser(ev, this.itemSelect.id)
     }
   }
   showMessageType(action?: keyof MsgAdminUser) {
     if(action){
       this.showMessage(mType.success, "Thông báo", msgAdminUser[action]);
     }
-}
+  }
+
 }

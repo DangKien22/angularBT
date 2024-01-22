@@ -1,13 +1,22 @@
 {
   "admin-user": [
     {
-      "id": "1",
-      "userName": "kiendt1",
+      "userName": "kiendt13",
       "password": "@Aht2210",
       "email": "kiendt1@arrowhitech.co",
       "name": "Dang Trung Kien",
       "phoneNumber": "0976525014",
-      "address": "Vinh Phuc"
+      "address": "Vinh Phuc",
+      "id": "1"
+    },
+    {
+      "userName": "kiendt133",
+      "password": "@Aht2210",
+      "email": "kiendt1@arrowhitech.co",
+      "name": "Dang Trung Kien",
+      "phoneNumber": "0976525014",
+      "address": "Vinh Phuc",
+      "id": "1"
     }
   ]
 }

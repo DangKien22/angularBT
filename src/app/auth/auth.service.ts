@@ -5,38 +5,63 @@ import { Observable, of } from 'rxjs';
 import { User } from './shared/models/user';
 import { apiServiceBase } from 'src/modules/api-services-base';
 import { Title } from '@angular/platform-browser';
+import { AdminUser } from './helpers/interfaces/admin-user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends apiServiceBase {
+  public listAdminUser: AdminUser[] = [];
   constructor(
     private router: Router,
     private http: HttpClient,
+    private userService: UserService
   ) {
-    super(http)
+    super(http);
   }
   redirectUrl: string = '';
   isAuthenticated(): boolean {
     return !!localStorage.getItem('authToken');
   }
-  fakeLogin(user: User): Observable<any> {
-    const fakeUser: User = { username: 'user', password: 'Password@123' };
-    if (
-      user.username === fakeUser.username &&
-      user.password === fakeUser.password
-    ) {
-      localStorage.setItem('currentUser', JSON.stringify(fakeUser));
-      localStorage.setItem('authToken', 'fakeAuthToken');
-      this.router.navigate(['/']);
-      return of({
-        authToken: 'fakeAuthToken',
-        role: 'user',
-      });
-    } else {
-      return of({ error: 'Đăng nhập thất bại' });
-    }
+
+  getListUsers() {
+    this.userService.getListUsers().subscribe({
+      next: (data) => {
+        if (data) {
+          console.log({ data });
+          this.listAdminUser = data;
+        }
+      },
+    });
   }
+
+  fakeLogin(user: AdminUser): Observable<any> {
+    return new Observable((observer) => {
+      this.userService.getListUsers().subscribe((users) => {
+        const foundUser = users.find(
+          (u: AdminUser) =>
+            u.userName === user.userName && u.password === user.password
+        );
+  
+        if (foundUser) {
+          localStorage.setItem('currentUser', JSON.stringify(foundUser));
+          localStorage.setItem('authToken', 'fakeAuthToken');
+          observer.next({
+            authToken: 'fakeAuthToken',
+            role: 'user',
+          });
+          observer.complete();
+  
+          this.router.navigate(['/']);
+        } else {
+          observer.next({ error: 'Đăng nhập thất bại' });
+          observer.complete();
+        }
+      });
+    });
+  }
+  
 
   fakeLogout(): Observable<any> {
     localStorage.removeItem('currentUser');
@@ -44,16 +69,4 @@ export class AuthService extends apiServiceBase {
     this.router.navigate(['/login']);
     return of({});
   }
-
-  public getListUsers(): Observable<any> {
-    return this.get("http://localhost:3000/admin-user");
-  };
-  public addUser(params?: any): Observable<any> {
-    console.log(params)
-    return this.post("http://localhost:3000/admin-user", params);
-  };
-  public deleteUser(id?: string | number): Observable<any> {
-    console.log(id)
-    return this.delete(`${"http://localhost:3000/admin-user"}/${id}`);
-  };
 }
