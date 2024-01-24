@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { BooksService } from './books.service';
+import { Product } from './shared/models/book-utils';
 
 @Component({
   selector: 'app-books',
@@ -7,11 +8,13 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./books.component.scss']
 })
 export class BooksComponent implements OnInit {
+    layout: 'list' | 'grid' ="list";
 
-  constructor(
-    private service: AuthService
-  ) { }
+    products!: Product[];
 
-  ngOnInit() {
-  }
+    constructor(private productService: BooksService) {}
+
+    ngOnInit() {
+        this.productService.getProducts().then((data) => (this.products = data.slice(0, 12)));
+    }
 }

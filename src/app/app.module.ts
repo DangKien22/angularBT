@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/share.module';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BooksModule } from './books/books.module';
 
 @NgModule({
   declarations: [	
@@ -17,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     AuthModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BooksModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

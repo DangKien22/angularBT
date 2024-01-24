@@ -3,7 +3,6 @@ import { ButtonModule } from "primeng/button";
 import { PrimeNgModule } from "src/modules/primeng-module/primeng.module";
 import { LoginComponent } from "./login/login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BooksComponent } from "../books/books.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminUserComponent } from "./admin-user/admin-user.component";
 import { AddAdminComponent } from "./admin-user/add-admin/add-admin.component";
@@ -26,7 +25,6 @@ const routes: Routes = [
     ],
     declarations: [
         LoginComponent,
-        BooksComponent,
         AddAdminComponent,
         AdminUserComponent, 
         PopupDeleteComponent
