@@ -11,10 +11,10 @@ export class LoginComponent implements OnInit {
   errorMsg: { [key: string]: string } = {};
 
   constructor(private formBuilder: FormBuilder,
-    private service : AuthService
-    ) {}
+    private service: AuthService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public formData: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required, this.usernameValidator]],
@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
 
   handleSubmit() {
     const value = this.formData.value;
-    console.log({value})
+    console.log({ value })
     if (this.formData.valid) {
-      this.service.fakeLogin({userName: value.username, password: value.password}).subscribe(
+      this.service.fakeLogin({ userName: value.username, password: value.password }).subscribe(
         (response) => {
-          console.log({response})
+          console.log({ response })
           if (response.authToken) {
             console.log('Login successful:', response);
           }

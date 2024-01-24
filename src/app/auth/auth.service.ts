@@ -43,7 +43,7 @@ export class AuthService extends apiServiceBase {
           (u: AdminUser) =>
             u.userName === user.userName && u.password === user.password
         );
-  
+
         if (foundUser) {
           localStorage.setItem('currentUser', JSON.stringify(foundUser));
           localStorage.setItem('authToken', 'fakeAuthToken');
@@ -52,7 +52,7 @@ export class AuthService extends apiServiceBase {
             role: 'user',
           });
           observer.complete();
-  
+
           this.router.navigate(['/']);
         } else {
           observer.next({ error: 'Đăng nhập thất bại' });
@@ -61,7 +61,7 @@ export class AuthService extends apiServiceBase {
       });
     });
   }
-  
+
 
   fakeLogout(): Observable<any> {
     localStorage.removeItem('currentUser');

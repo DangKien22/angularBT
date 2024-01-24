@@ -20,75 +20,72 @@ interface MsgAdminUser {
   templateUrl: './admin-user.component.html',
   styleUrls: ['./admin-user.component.scss'],
 })
-export class AdminUserComponent 
-  extends IsBaseComponent
-  implements OnInit {
+export class AdminUserComponent extends IsBaseComponent implements OnInit {
   public listAdminUser: AdminUser[] = [];
   searchText: string = '';
   actionType = '';
   titlePopUp = '';
   openPopAdd = false;
-  itemSelect: any
+  itemSelect: any;
 
   constructor(
     private service: UserService,
     public msg: MessageService,
     public title: Title,
-    public dialogService: DialogService,
-    ) {
-      super(msg)
-    }
+    public dialogService: DialogService
+  ) {
+    super(msg);
+  }
 
   ngOnInit() {
     this.getListUsers();
   }
   handleShowDelete(id: string) {
     const dialogRef: DynamicDialogRef = this.dialogService.open(
-        PopupDeleteComponent,
-        {
-            data: {
-                name: "Bạn có chắc chắn muốn xóa?",
-                ok: "Đồng ý",
-                no: "Đóng",
-            },
-            header: "Xác nhận",
-        }
+      PopupDeleteComponent,
+      {
+        data: {
+          name: 'Bạn có chắc chắn muốn xóa?',
+          ok: 'Đồng ý',
+          no: 'Đóng',
+        },
+        header: 'Xác nhận',
+      }
     );
     dialogRef.onClose.subscribe((result: any) => {
-        if (result === true) {
-            this.service.deleteUser(id).subscribe(
-                (response: any) => {
-                    this.showMessageType("delete")
-                    this.getListUsers();
-                },
-                (error: any) => {
-                    console.log({ error });
-                    this.showMessage(mType.error, "Thất bại", error);
-                }
-            );
-        }
-        return false;
+      if (result === true) {
+        this.service.deleteUser(id).subscribe(
+          (response: any) => {
+            this.showMessageType('delete');
+            this.getListUsers();
+          },
+          (error: any) => {
+            console.log({ error });
+            this.showMessage(mType.error, 'Thất bại', error);
+          }
+        );
+      }
+      return false;
     });
-}
+  }
   handleEdit(actionType: string, params: any) {
     this.actionType = actionType;
     this.itemSelect = params;
-    this.titlePopUp ="Chỉnh sửa User";
+    this.titlePopUp = 'Chỉnh sửa User';
     this.openPopAdd = true;
   }
   handleView(actionType: string, params: any) {
     this.actionType = actionType;
     this.itemSelect = params;
-    this.titlePopUp ="Xem thông tin User";
+    this.titlePopUp = 'Xem thông tin User';
     this.openPopAdd = true;
   }
   handlOpenAdd(actionType: string) {
-    console.log({actionType})
     this.actionType = actionType;
     this.openPopAdd = true;
     this.titlePopUp = 'Thêm mới User';
   }
-  performSearch() {}
+  performSearch() { }
   closePopUp(ev: any) {
     this.actionType = '';
     this.openPopAdd = ev;
@@ -104,25 +101,25 @@ export class AdminUserComponent
       },
     });
   }
-  handleAddUser(params: any){
-    console.log({params})
+  handleAddUser(params: any) {
+    console.log({ params });
     this.service.addUser(params).subscribe({
-      next: data => {
-        if(data){
+      next: (data) => {
+        if (data) {
           this.getListUsers();
-          this.showMessageType("add");
+          this.showMessageType('add');
         }
       },
-      error: error => {
-        console.log('errr')
-        this.showMessage(mType.error, "Thất bại", error);
-      }
-    })
+      error: (error) => {
+        console.log('errr');
+        this.showMessage(mType.error, 'Thất bại', error);
+      },
+    });
   }
   handleEditUser(params?: any, id?: string | number) {
     this.service.updateUser(params, id).subscribe({
       next: data => {
-        if(data){
+        if (data) {
           this.getListUsers();
           this.showMessageType('edit')
         }
@@ -133,10 +130,10 @@ export class AdminUserComponent
     })
   }
   handleShowMessage(ev?: any) {
-    console.log(ev)
+    console.log(ev);
     if (this.actionType === 'add') {
       this.handleAddUser(ev);
-    } 
+    }
     if (this.actionType === 'delete') {
       this.handleShowDelete(ev)
     }
@@ -145,9 +142,8 @@ export class AdminUserComponent
     }
   }
   showMessageType(action?: keyof MsgAdminUser) {
-    if(action){
-      this.showMessage(mType.success, "Thông báo", msgAdminUser[action]);
+    if (action) {
+      this.showMessage(mType.success, 'Thông báo', msgAdminUser[action]);
     }
   }
-
 }
