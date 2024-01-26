@@ -35,10 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'primeng/chart';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
-
-
-
+import { TagModule } from 'primeng/tag';
+import { CarouselModule } from 'primeng/carousel';
 @NgModule({
     declarations: [
     ],
@@ -78,7 +76,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
         HttpClientModule,
         ChartModule,
         BreadcrumbModule,
-        SelectButtonModule
+        SelectButtonModule,
+        TagModule,
+        CarouselModule
     ],
     exports: [
         RadioButtonModule,
@@ -116,7 +116,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
         HttpClientModule,
         ChartModule,
         BreadcrumbModule,
-        SelectButtonModule
+        SelectButtonModule,
+        TagModule,
+        CarouselModule
     ],
 
 })

@@ -1,0 +1,81 @@
+.product-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .product-image {
+        flex: 1;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+            image-rendering: -webkit-optimize-contrast;
+        }
+    }
+
+    .product-info {
+        flex: 2;
+        padding-left: 20px;
+
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .reviews,
+        .likes {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .description {
+            margin: 20px 0;
+        }
+
+        .author,
+        .publisher,
+        .year,
+        .shipping {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+
+            del {
+                color: #777;
+                margin-left: 10px;
+            }
+        }
+
+        .quantity {
+            margin: 20px 0;
+        }
+
+        .add-to-cart {
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        flex-direction: column;
+    }
+}
+
+:host ::ng-deep .p-inputnumber-buttons-vertical {
+    flex-direction: row;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-vertical .p-inputtext {
+    max-width: 100px;
+    border-radius: 0;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-vertical .p-button {
+    border-radius: 0;
+}

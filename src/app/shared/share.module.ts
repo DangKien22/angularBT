@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TopMenuComponent } from "./components/layout/top-menu/top-menu.component";
 import { InputTextModule } from "primeng/inputtext";
 import { HeaderComponent } from './components/header/header.component';
+import { MenubarModule } from "primeng/menubar";
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
         ButtonModule,
         FormsModule,
         ReactiveFormsModule,
-        InputTextModule
+        InputTextModule,
+        MenubarModule,
     ],
     declarations: [
         TopMenuComponent,

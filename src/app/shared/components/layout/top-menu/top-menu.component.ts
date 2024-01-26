@@ -7,17 +7,19 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./top-menu.component.scss'],
 })
 export class TopMenuComponent implements OnInit {
-  menuItems = [
-    { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
-    { label: 'Books', icon: 'pi pi-list', routerLink: '/books' },
-    { label: 'User', icon: 'pi pi-info-circle', routerLink: '/admin-user' },
-  ];
+  menuItems: any[] = []
 
   constructor(
     private service: AuthService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.menuItems = [
+      { label: 'Trang chủ', icon: 'pi pi-home', routerLink: '/' },
+      { label: 'Sách', icon: 'pi pi-list', routerLink: '/books' },
+      { label: 'Người dùng', icon: 'pi pi-user', routerLink: '/admin-user' },
+    ];
+  }
   logout() {
     this.service.fakeLogout()
   }

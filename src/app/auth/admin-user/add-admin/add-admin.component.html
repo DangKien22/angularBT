@@ -101,6 +101,22 @@
             </div>
           </div>
         </div>
+        <div class="col-12 grid">
+          <div class="col-3">
+            <span>Vai trò<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <p-dropdown
+            [options]="roleOptions"
+            placeholder="Vai trò"
+            optionLabel="role"
+            optionValue="id"
+            formControlName="role"
+            append="body"
+            >
+            </p-dropdown>
+          </div>
+        </div>
         
         <div
           class="grid align-items-center justify-content-center sm:justify-content-end col-12"

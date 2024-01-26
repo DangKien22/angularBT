@@ -1,3 +1,145 @@
-<p>
-  book-detail works!
-</p>
+<div>
+  <div class="product-detail">
+    <div class="product-image">
+      <img
+        [src]="
+          'https://primefaces.org/cdn/primeng/images/demo/product/' +
+          dataDetail.image
+        "
+        [alt]="dataDetail.name"
+      />
+    </div>
+    <div class="product-info">
+      <h2 class="product-title">{{ dataDetail.name }}</h2>
+      <div class="flex justify-content-between align-items-center flex-wrap">
+        <div class="flex gap-3 align-items-center">
+          <p-rating
+            [ngModel]="dataDetail.rating"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
+          <p class="reviews">235 Reviews</p>
+          <p class="likes">455K Likes</p>
+        </div>
+        <div class="flex gap-3 flex-wrap m-2">
+          <p-button
+            icon="pi pi-facebook"
+            label="Facebook"
+            [text]="true"
+            [raised]="true"
+            severity="info"
+          ></p-button>
+          <p-button
+            icon="pi pi-twitter"
+            label="Twitter"
+            [text]="true"
+            [raised]="true"
+            severity="info"
+          ></p-button>
+          <p-button
+            icon="pi pi-whatsapp"
+            label="Whatsapp"
+            [text]="true"
+            [raised]="true"
+            severity="success"
+          ></p-button>
+          <p-button
+            icon="pi pi-envelope"
+            label="Email"
+            [text]="true"
+            [raised]="true"
+            [plain]="true"
+          ></p-button>
+        </div>
+      </div>
+      <p class="description">
+        {{ dataDetail.description }}
+      </p>
+      <div class="flex justify-content-between align-items-center flex-wrap mb-3">
+        <div class="flex gap-4">
+          <div class="author-name">
+            <p>Tác giả</p>
+            <p class="font-bold">{{ dataDetail.author }}</p>
+          </div>
+
+          <div class="publisher-info">
+            <p>Xuất bản bởi</p>
+            <p class="font-bold">{{ dataDetail.publisher }}</p>
+          </div>
+
+          <div class="year-info">
+            <p>Năm</p>
+            <p class="font-bold">{{ dataDetail.year }}</p>
+          </div>
+        </div>
+        <div class="flex gap-4 align-items-center">
+          <p-tag [value]="'FREE SHIPPING'"></p-tag>
+          <p-tag
+            [value]="dataDetail?.inventoryStatus"
+            [severity]="getSeverity(dataDetail)"
+          ></p-tag>
+        </div>
+      </div>
+      <div class="card flex justify-content-between align-items-center gap-3 flex-wrap">
+        <h3 class="price m-0">
+          ${{ dataDetail.price }} <del>${{ dataDetail.normalPrice }}</del>
+        </h3>
+        <div class="flex align-items-center gap-2">
+          <p-inputNumber
+            [(ngModel)]="value"
+            [showButtons]="true"
+            buttonLayout="vertical"
+            spinnerMode="vertical"
+            inputId="vertical"
+            decrementButtonClass="p-button-info"
+            incrementButtonClass="p-button-info"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+          ></p-inputNumber>
+          <p-button label="Add to cart" class="add-to-cart"></p-button>
+          <p-button
+            icon="pi pi-heart"
+            [text]="true"
+            [raised]="true"
+            severity="danger"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-5">
+    <h1 class="text-center">Sách liên quan</h1>
+    <p-carousel
+      [value]="products"
+      [numVisible]="3"
+      [numScroll]="3"
+      [circular]="false"
+      [responsiveOptions]="responsiveOptions"
+    >
+      <ng-template let-product pTemplate="item">
+        <div
+          class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+        >
+          <div class="mb-3 cursor-pointer" (click)="navigateTo(product.id)">
+            <img
+              src="https://primefaces.org/cdn/primeng/images/demo/product/{{
+                product.image
+              }}"
+              [alt]="product.name"
+              class="w-6 shadow-2"
+            />
+          </div>
+          <div>
+            <h2 class="mb-1 cursor-pointer" (click)="navigateTo(product.id)">{{ product.name }}</h2>
+            <h3 class="mt-0 mb-3">{{ "$" + product.price }}</h3>
+          </div>
+          <p-tag
+            [value]="product.inventoryStatus"
+            [severity]="getSeverity(product)"
+          ></p-tag>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

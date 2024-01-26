@@ -49,7 +49,6 @@ export class AuthService extends apiServiceBase {
           localStorage.setItem('authToken', 'fakeAuthToken');
           observer.next({
             authToken: 'fakeAuthToken',
-            role: 'user',
           });
           observer.complete();
 

@@ -1,21 +1,24 @@
-export interface Product {
-    id?: string;
-    code?: string;
-    name?: string | undefined;
-    description?: string;
-    price?: number;
-    quantity?: number;
-    inventoryStatus?: string;
-    category?: string;
-    image?: string;
-    rating?: number;
-}
+import { NavigationExtras, Router } from '@angular/router';
 
-export interface SelectItem<T = any> {
-    label?: string;
-    value: T;
-    styleClass?: string;
-    icon?: string;
-    title?: string;
-    disabled?: boolean;
+export function getSeverity(inventoryStatus: string | undefined): string {
+    switch (inventoryStatus) {
+        case 'IN STOCK':
+            return 'success';
+
+        case 'LOW STOCK':
+            return 'warning';
+
+        case 'OUT OF STOCK':
+            return 'danger';
+
+        default:
+            return '';
+    }
+};
+
+export function handleNavigate(router: Router, route: string, queryParams?: any): void {
+    let navigationExtras: NavigationExtras = {
+        queryParams: queryParams,
+    };
+    router.navigate([route], navigationExtras);
 }
