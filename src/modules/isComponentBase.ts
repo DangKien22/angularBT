@@ -15,7 +15,7 @@ export class IsBaseComponent {
 
     }
     ngOnInnit() {}
-    showMessage(iType: mType, strheader: any, strmessage: any, key?: string) {
+    showMessage(iType: mType, strheader?: any, strmessage?: any, key?: string) {
         if (iType == 0) {
             if (key != undefined) {
                 this.messageService.add({key, severity: 'success', summary: strheader, detail: strmessage});

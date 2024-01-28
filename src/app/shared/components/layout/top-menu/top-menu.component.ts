@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { handleNavigate } from 'src/app/books/shared/models/book-utils';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -7,10 +10,13 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./top-menu.component.scss'],
 })
 export class TopMenuComponent implements OnInit {
-  menuItems: any[] = []
+  menuItems: any[] = [];
+  cartItemCount: number = 0;
 
   constructor(
-    private service: AuthService
+    private service: AuthService,
+    private cartService: CartService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -19,8 +25,16 @@ export class TopMenuComponent implements OnInit {
       { label: 'Sách', icon: 'pi pi-list', routerLink: '/books' },
       { label: 'Người dùng', icon: 'pi pi-user', routerLink: '/admin-user' },
     ];
+    this.cartService.cartItemCount$.subscribe(count => {
+      console.log('count', count)
+      this.cartItemCount = count;
+    });
   }
   logout() {
     this.service.fakeLogout()
+  }
+
+  navigateTo() {
+    handleNavigate(this.router, '/cart')
   }
 }

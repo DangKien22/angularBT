@@ -8,6 +8,7 @@ import { SharedModule } from './shared/share.module';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BooksModule } from './books/books.module';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [	
@@ -20,6 +21,7 @@ import { BooksModule } from './books/books.module';
     SharedModule,
     BrowserAnimationsModule,
     BooksModule,
+    CartModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

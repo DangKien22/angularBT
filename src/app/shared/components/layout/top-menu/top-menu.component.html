@@ -9,6 +9,13 @@
       (click)="menuItem.command?.()"
     ></p-button>
   </ng-template>
+  <i
+    class="pi pi-shopping-cart icon-cart"
+    pBadge
+    [value]="cartItemCount.toString()"
+    severity="danger"
+    (click)="navigateTo()"
+  ></i>
   <p-button
     label="Đăng xuất"
     icon="pi pi-power-off"
@@ -16,4 +23,3 @@
     (click)="logout()"
   ></p-button>
 </p-menubar>
-

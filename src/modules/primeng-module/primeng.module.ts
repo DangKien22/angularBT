@@ -37,6 +37,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
+import { BadgeModule } from 'primeng/badge';
 @NgModule({
     declarations: [
     ],
@@ -78,7 +79,8 @@ import { CarouselModule } from 'primeng/carousel';
         BreadcrumbModule,
         SelectButtonModule,
         TagModule,
-        CarouselModule
+        CarouselModule,
+        BadgeModule
     ],
     exports: [
         RadioButtonModule,
@@ -118,7 +120,8 @@ import { CarouselModule } from 'primeng/carousel';
         BreadcrumbModule,
         SelectButtonModule,
         TagModule,
-        CarouselModule
+        CarouselModule,
+        BadgeModule
     ],
 
 })

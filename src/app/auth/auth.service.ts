@@ -7,6 +7,7 @@ import { apiServiceBase } from 'src/modules/api-services-base';
 import { Title } from '@angular/platform-browser';
 import { AdminUser } from './helpers/interfaces/admin-user';
 import { UserService } from './user.service';
+import { CartService } from '../shared/service/cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class AuthService extends apiServiceBase {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
   ) {
     super(http);
   }
@@ -65,6 +67,7 @@ export class AuthService extends apiServiceBase {
   fakeLogout(): Observable<any> {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('authToken');
+    this.cartService.clearCartItem()
     this.router.navigate(['/login']);
     return of({});
   }
