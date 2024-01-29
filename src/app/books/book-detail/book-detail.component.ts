@@ -24,7 +24,7 @@ export class BookDetailComponent extends IsBaseComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public msg: MessageService,
-    public title: Title, 
+    public title: Title,
     private cartService: CartService
   ) {
     super(msg);
@@ -81,11 +81,19 @@ export class BookDetailComponent extends IsBaseComponent implements OnInit {
   }
 
   addToCart() {
-    console.log('ass');
-    if (this.value > 0 && this.dataDetail.inventoryStatus === "IN STOCK") {
-      this.cartService.updateCartItemCount(this.value, this.dataDetail);
+    if (this.value > 0 && this.dataDetail.inventoryStatus === 'IN STOCK') {
+      this.cartService.updateCart(this.dataDetail, this.value);
+      this.showMessage(
+        mType.success,
+        'Thành công',
+        'Thêm sản phẩm vào giỏ hàng thành công'
+      );
     } else {
-      this.showMessage(mType.error, 'Lỗi', 'Lỗi');
+      this.showMessage(
+        mType.error,
+        'Lỗi',
+        'Thêm sản phẩm vào giỏ hàng thất bại'
+      );
     }
   }
 }

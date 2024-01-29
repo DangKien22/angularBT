@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { handleNavigate } from 'src/app/books/shared/models/book-utils';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -6,20 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  products = [
-    {name: 'Shirt', quantity: 1, price: 44.00},
-  ];
-
-  shippingOptions = [
-    {name: 'Standard Delivery', code: 'SD'},
-  ];
-  constructor() { }
+  dataCart: any;
+  constructor(
+    private cartService: CartService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.cartService.cartItems$.subscribe(item => {
+      this.dataCart = item;
+      console.log(this.dataCart)
+    })
   }
 
-  removeProduct(e?: any) {}
-   
+  handleRomove(id?: string | number) {
+    this.cartService.removeItemById(id)
+  }
+
+  backTo() {
+     handleNavigate(this.router, '/books')
+  }
+
   checkout() {
 
   }

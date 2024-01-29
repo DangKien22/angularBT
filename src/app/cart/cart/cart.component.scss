@@ -5,3 +5,17 @@
     line-height: 40px;
     color: #070504;
 }
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputtext {
+    max-width: 100px;
+    border-radius: 0;
+    text-align: center;
+}
+
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button {
+    border-radius: 0;
+}

@@ -89,13 +89,13 @@
           <p-inputNumber
             [(ngModel)]="value"
             [showButtons]="true"
-            buttonLayout="vertical"
-            spinnerMode="vertical"
-            inputId="vertical"
+            buttonLayout="horizontal"
             decrementButtonClass="p-button-info"
             incrementButtonClass="p-button-info"
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
+            [max]="dataDetail.quantity"
+            [min]="0"
           ></p-inputNumber>
           <p-button label="Add to cart" class="add-to-cart" (click)="addToCart()"></p-button>
           <p-button

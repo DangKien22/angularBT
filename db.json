@@ -43,6 +43,22 @@
   ],
   "books": [
     {
+      "id": 1111,
+      "author": "Đặng Trung Kiên",
+      "code": "f230fh0g3",
+      "name": "Sách Giáo Khoa Lớp 2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est purus, ultrices in porttitor in, accumsan non quam. Nam consectetur porttitor rhoncus ...",
+      "image": "bamboo-watch.jpg",
+      "price": 5,
+      "category": "SGK",
+      "quantity": 4,
+      "inventoryStatus": "IN STOCK",
+      "rating": 5,
+      "normalPrice": 100,
+      "publisher": "Nhà xuất bản giáo dục",
+      "year": "2024"
+    },
+    {
       "id": 1,
       "author": "Đặng Trung Kiên",
       "code": "f230fh0g3",

@@ -67,15 +67,12 @@
     }
 }
 
-:host ::ng-deep .p-inputnumber-buttons-vertical {
-    flex-direction: row;
-}
-
-:host ::ng-deep .p-inputnumber-buttons-vertical .p-inputtext {
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-inputtext {
     max-width: 100px;
     border-radius: 0;
+    text-align: center;
 }
 
-:host ::ng-deep .p-inputnumber-buttons-vertical .p-button {
+:host ::ng-deep .p-inputnumber-buttons-horizontal .p-button {
     border-radius: 0;
 }

@@ -12,35 +12,42 @@ export class CartService {
   cartItems$ = this.cartItemsSource.asObservable();
 
   constructor() {
-    this.loadCartItemCount();
+    this.loadCart();
   }
 
-  private loadCartItemCount() {
-    const itemCount = localStorage.getItem('cartItemCount');
-    const items = localStorage.getItem('cartItems');
-    if (itemCount && items) {
-      this.cartItemCountSource.next(+itemCount);
+  private loadCart() {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      this.cartItems = JSON.parse(storedCartItems);
       this.cartItemsSource.next(this.cartItems);
+      this.cartItemCountSource.next(this.cartItems.length);
     }
   }
 
-  updateCartItemCount(count: number, item: any) {
-    const newCount = this.cartItemCountSource.value + count;
-    console.log('count')
-    console.log('item', item)
-    if (newCount >= 0) {
-      localStorage.setItem('cartItemCount', newCount.toString());
-      localStorage.setItem('cartItems', JSON.stringify(item));
-      this.cartItems.push(item);
-      this.cartItemCountSource.next(newCount);
-      this.cartItemsSource.next(this.cartItems);
+  updateCart(product: any, quantityAdd: number) {
+    let existingProduct = this.cartItems.find(item => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantityAdd += quantityAdd;
+    } else {
+      existingProduct = { ...product, quantityAdd };
+      this.cartItems.push(existingProduct);
     }
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    this.cartItemsSource.next(this.cartItems);
+    this.cartItemCountSource.next(this.cartItems.length);
   }
 
   clearCartItem() {
-    localStorage.removeItem('cartItemCount');
     localStorage.removeItem('cartItems');
+    this.cartItems = [];
+    this.cartItemsSource.next(this.cartItems);
     this.cartItemCountSource.next(0);
-    this.cartItemsSource.next([]);
+  }
+
+  removeItemById(id?: string | number) {
+    this.cartItems = this.cartItems.filter(item => item.id !== id);
+    this.cartItemCountSource.next(this.cartItems.length);
+    this.cartItemsSource.next(this.cartItems)
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 }

@@ -5,14 +5,15 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Product, SelectItem } from './shared/models/interfaces';
 import { handleNavigate } from './shared/models/book-utils';
+import { CartService } from '../shared/service/cart.service';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss']
+  styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent extends IsBaseComponent implements OnInit {
-  layout: 'list' | 'grid' = "list";
+  layout: 'list' | 'grid' = 'list';
 
   products!: Product[];
   sortOptions!: SelectItem[];
@@ -25,31 +26,32 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
   constructor(
     private service: BooksService,
     public msg: MessageService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
-    super(msg)
+    super(msg);
   }
 
   ngOnInit() {
     this.getBooks();
     this.sortOptions = [
       { label: 'Giá từ cao đến thấp', value: '!price' },
-      { label: 'Giá từ thấp đến cao', value: 'price' }
+      { label: 'Giá từ thấp đến cao', value: 'price' },
     ];
   }
 
   getBooks() {
     this.service.getBooks().subscribe({
-      next: data => {
+      next: (data) => {
         if (data) {
-          console.log({ data })
+          console.log({ data });
           this.products = data;
         }
       },
-      error: error => {
-        this.showMessage(mType.error, "Lỗi", error)
-      }
-    })
+      error: (error) => {
+        this.showMessage(mType.error, 'Lỗi', error);
+      },
+    });
   }
 
   getSeverity(product: Product) {
@@ -66,15 +68,23 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
       default:
         return '';
     }
-  };
+  }
 
   navigateTo(id: string | number) {
     const queryParams = {
-      id: id
+      id: id,
     };
     handleNavigate(this.router, 'book-detail', queryParams);
   }
 
-  onSortChange(event: any) {
+  onSortChange(event: any) {}
+
+  addToCart(product: Product) {
+      this.cartService.updateCart(product, 1);
+      this.showMessage(
+        mType.success,
+        'Thành công',
+        'Thêm sản phẩm vào giỏ hàng thành công'
+      );
   }
 }
