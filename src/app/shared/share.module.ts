@@ -6,6 +6,7 @@ import { TopMenuComponent } from "./components/layout/top-menu/top-menu.componen
 import { InputTextModule } from "primeng/inputtext";
 import { HeaderComponent } from './components/header/header.component';
 import { MenubarModule } from "primeng/menubar";
+import { HomePageComponent } from "./components/home-page/home-page.component";
 
 @NgModule({
     imports: [
@@ -19,10 +20,12 @@ import { MenubarModule } from "primeng/menubar";
     declarations: [
         TopMenuComponent,
         HeaderComponent,
+        HomePageComponent
     ],
     exports: [
         TopMenuComponent,
-        HeaderComponent
+        HeaderComponent,
+        HomePageComponent
     ]
 })
 
