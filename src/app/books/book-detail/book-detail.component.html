@@ -3,10 +3,7 @@
   <div class="product-detail">
     <div class="product-image">
       <img
-        [src]="
-          'https://primefaces.org/cdn/primeng/images/demo/product/' +
-          dataDetail?.image
-        "
+        [src]="'https://picsum.photos/468/395?random=' + dataDetail.id"
         [alt]="dataDetail?.name"
       />
     </div>
@@ -23,7 +20,7 @@
           <p class="likes">455K Likes</p>
         </div>
         <div class="flex gap-3 flex-wrap m-2">
-          <p-button
+            <p-button
             icon="pi pi-facebook"
             label="Facebook"
             [text]="true"
@@ -124,9 +121,7 @@
         >
           <div class="mb-3 cursor-pointer" (click)="navigateTo(product.id)">
             <img
-              src="https://primefaces.org/cdn/primeng/images/demo/product/{{
-                product.image
-              }}"
+              [src]="'https://picsum.photos/468/395?random=' + product.id"
               [alt]="product.name"
               class="w-6 shadow-2"
             />
