@@ -7,7 +7,7 @@ import { apiServiceBase } from 'src/modules/api-services-base';
 import { Title } from '@angular/platform-browser';
 import { AdminUser } from './helpers/interfaces/admin-user';
 import { UserService } from './user.service';
-import { CartService } from '../shared/service/cart.service';
+import { CartService } from '../cart/cart.service';
 
 @Injectable({
   providedIn: 'root',

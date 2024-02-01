@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { handleNavigate } from 'src/app/books/shared/models/book-utils';
-import { CartService } from 'src/app/shared/service/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -11,7 +11,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
 })
 export class TopMenuComponent implements OnInit {
   menuItems: any[] = [];
-  cartItemCount: number = 0;
+  cartItemCount: string = "0";
 
   constructor(
     private service: AuthService,
@@ -27,7 +27,7 @@ export class TopMenuComponent implements OnInit {
     ];
     this.cartService.cartItemCount$.subscribe(count => {
       console.log('count', count)
-      this.cartItemCount = count;
+      this.cartItemCount = count?.toString();
     });
   }
   logout() {

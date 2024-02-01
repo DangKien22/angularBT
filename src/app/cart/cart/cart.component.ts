@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { handleNavigate } from 'src/app/books/shared/models/book-utils';
-import { CartService } from 'src/app/shared/service/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -27,11 +27,11 @@ export class CartComponent implements OnInit {
   }
 
   backTo() {
-     handleNavigate(this.router, '/books')
+    handleNavigate(this.router, '/books')
   }
 
   checkout() {
 
   }
-  
+
 }

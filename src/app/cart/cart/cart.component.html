@@ -9,8 +9,6 @@
           <p-table
             responsiveLayout="scroll"
             [value]="dataCart"
-            [paginator]="true"
-            [rows]="10"
           >
             <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
               <tr>
@@ -22,10 +20,7 @@
                 </td>
                 <td>
                   <img
-                    [src]="
-                      'https://primefaces.org/cdn/primeng/images/demo/product/' +
-                      row?.image
-                    "
+                    [src]="'https://picsum.photos/468/395?random=' + row.id"
                     [alt]="row?.name"
                   />
                 </td>
