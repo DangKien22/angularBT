@@ -5,7 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Product, SelectItem } from './shared/models/interfaces';
 import { handleNavigate } from './shared/models/book-utils';
-import { CartService } from '../shared/service/cart.service';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-books',
@@ -22,6 +22,11 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
 
   productDetail!: Product[];
   sortField!: string;
+
+  actionType = '';
+  titlePopUp = '';
+  openPopAdd = false;
+  itemSelect: any;
 
   constructor(
     private service: BooksService,
@@ -77,14 +82,28 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
     handleNavigate(this.router, 'book-detail', queryParams);
   }
 
-  onSortChange(event: any) {}
+  onSortChange(event: any) { }
 
   addToCart(product: Product) {
-      this.cartService.updateCart(product, 1);
-      this.showMessage(
-        mType.success,
-        'Thành công',
-        'Thêm sản phẩm vào giỏ hàng thành công'
-      );
+    this.cartService.updateCart(product, 1);
+    this.showMessage(
+      mType.success,
+      'Thành công',
+      'Thêm sản phẩm vào giỏ hàng thành công'
+    );
+  }
+
+  handlOpenAdd(actionType: string) {
+    this.actionType = actionType;
+    this.openPopAdd = true;
+    this.titlePopUp = 'Thêm mới sách';
+  }
+
+  handleShowMessage(e: any) {
+
+  }
+
+  closePopUp(e: any) {
+
   }
 }

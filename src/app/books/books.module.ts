@@ -10,14 +10,18 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SplitterModule } from 'primeng/splitter';
+import { AddBookComponent } from './add-book/add-book.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  { path: 'book-detail', component: BookDetailComponent }
+  { path: 'book-detail', component: BookDetailComponent },
 ]
 @NgModule({
   declarations: [
     BooksComponent,
     BookDetailComponent,
+    AddBookComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +31,8 @@ const routes: Routes = [
     TableModule,
     RouterModule.forChild(routes),
     SplitterModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     MessageService,

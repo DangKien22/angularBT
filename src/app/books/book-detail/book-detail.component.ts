@@ -6,7 +6,7 @@ import { getSeverity, handleNavigate } from '../shared/models/book-utils';
 import { IsBaseComponent, mType } from 'src/modules/isComponentBase';
 import { MessageService } from 'primeng/api';
 import { Title } from '@angular/platform-browser';
-import { CartService } from 'src/app/shared/service/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
   selector: 'app-book-detail',
