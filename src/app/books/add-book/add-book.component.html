@@ -16,51 +16,6 @@
             <span>Tên sách<span style="color: red">*</span></span>
           </div>
           <div class="col-9 md:pr-0">
-            <input pInputText type="text" class="w-full" formControlName="userName"/>
-            <div style="margin-top: 5px">
-              <div *ngIf="formData.get('userName')?.errors?.['required'] || formData.get('userName')?.errors?.['invaliduserName']"
-                style="color: red"
-              >
-                {{ errorMsg["userName"] }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 md:col-12 grid">
-          <div class="col-3">
-            <span>Tác giả<span style="color: red">*</span></span>
-          </div>
-          <div class="col-9 md:pr-0">
-            <input pInputText type="password" class="w-full" formControlName="password"/>
-            <div style="margin-top: 5px">
-              <div *ngIf="formData.get('password')?.errors?.['required'] || formData.get('password')?.errors?.['invalidpassword']"
-                style="color: red"
-              >
-                {{ errorMsg["password"] }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 md:col-12 grid">
-          <div class="col-3">
-            <span>Loại sách<span style="color: red">*</span></span>
-          </div>
-          <div class="col-9 md:pr-0">
-            <input pInputText type="text" class="w-full" formControlName="email"/>
-            <div style="margin-top: 5px">
-              <div *ngIf="formData.get('email')?.errors?.['required'] || formData.get('email')?.errors?.['invalidemail']"
-                style="color: red"
-              >
-                {{ errorMsg["email"] }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 md:col-12 grid">
-          <div class="col-3">
-            <span>Giá<span style="color: red">*</span></span>
-          </div>
-          <div class="col-9 md:pr-0">
             <input pInputText type="text" class="w-full" formControlName="name"/>
             <div style="margin-top: 5px">
               <div *ngIf="formData.get('name')?.errors?.['required'] || formData.get('name')?.errors?.['invalidname']"
@@ -72,24 +27,69 @@
           </div>
         </div>
         <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Tác giả<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="author"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('author')?.errors?.['required'] || formData.get('author')?.errors?.['invalidauthor']"
+                style="color: red"
+              >
+                {{ errorMsg["author"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Loại sách<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="category"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('category')?.errors?.['required'] || formData.get('category')?.errors?.['invalidcategory']"
+                style="color: red"
+              >
+                {{ errorMsg["category"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
+          <div class="col-3">
+            <span>Giá<span style="color: red">*</span></span>
+          </div>
+          <div class="col-9 md:pr-0">
+            <input pInputText type="text" class="w-full" formControlName="price"/>
+            <div style="margin-top: 5px">
+              <div *ngIf="formData.get('price')?.errors?.['required'] || formData.get('price')?.errors?.['invalidprice']"
+                style="color: red"
+              >
+                {{ errorMsg["price"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-12 grid">
               <div class="col-3">
                 <span>Trạng thái<span style="color: red">*</span></span>
               </div>
               <div class="col-9 md:pr-0">
                 <p-dropdown
                 [options]="roleOptions"
-                placeholder="Vai trò"
+                placeholder="Trạng thái"
                 optionLabel="label"
                 optionValue="inventoryStatus"
-                formControlName="role"
+                formControlName="inventoryStatus"
                 append="body"
                 >
                 </p-dropdown>
                 <div style="margin-top: 5px">
-                  <div *ngIf="formData.get('address')?.errors?.['required'] || formData.get('address')?.errors?.['invalidaddress']"
+                  <div *ngIf="formData.get('inventoryStatus')?.errors?.['required'] || formData.get('inventoryStatus')?.errors?.['invalidinventoryStatus']"
                     style="color: red"
                   >
-                    {{ errorMsg["address"] }}
+                    {{ errorMsg["inventoryStatus"] }}
                   </div>
                 </div>
               </div>
@@ -99,12 +99,12 @@
             <span>Số lượng<span style="color: red">*</span></span>
           </div>
           <div class="col-9 md:pr-0">
-            <input pInputText type="text" class="w-full" formControlName="phoneNumber"/>
+            <input pInputText type="text" class="w-full" formControlName="quantity"/>
             <div style="margin-top: 5px">
-              <div *ngIf="formData.get('phoneNumber')?.errors?.['required'] || formData.get('phoneNumber')?.errors?.['invalidphoneNumber']"
+              <div *ngIf="formData.get('quantity')?.errors?.['required'] || formData.get('quantity')?.errors?.['invalidquantity']"
                 style="color: red"
               >
-                {{ errorMsg["phoneNumber"] }}
+                {{ errorMsg["quantity"] }}
               </div>
             </div>
           </div>

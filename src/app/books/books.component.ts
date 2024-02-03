@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { Product, SelectItem } from './shared/models/interfaces';
 import { handleNavigate } from './shared/models/book-utils';
 import { CartService } from '../cart/cart.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PopupDeleteComponent } from '../auth/popup-delete/popup-delete.component';
+import { ShareService } from '../shared/share.service';
 
 @Component({
   selector: 'app-books',
@@ -27,12 +30,15 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
   titlePopUp = '';
   openPopAdd = false;
   itemSelect: any;
+  roleAdmin: any
 
   constructor(
     private service: BooksService,
     public msg: MessageService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService, 
+    private dialogService : DialogService,
+    private shareService : ShareService
   ) {
     super(msg);
   }
@@ -43,6 +49,8 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
       { label: 'Giá từ cao đến thấp', value: '!price' },
       { label: 'Giá từ thấp đến cao', value: 'price' },
     ];
+    this.roleAdmin = this.shareService.checkRole()
+    console.log(this.roleAdmin)
   }
 
   getBooks() {
@@ -50,7 +58,7 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
       next: (data) => {
         if (data) {
           console.log({ data });
-          this.products = data;
+          this.products = data.reverse();
         }
       },
       error: (error) => {
@@ -82,7 +90,25 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
     handleNavigate(this.router, 'book-detail', queryParams);
   }
 
-  onSortChange(event: any) { }
+  onSortChange(event: any) {
+    const sortOption = event.value; 
+  
+    if (sortOption === '!price') {
+      this.products.sort((a, b) => {
+        if (a && b && a.price && b.price) {
+          return b.price - a.price; 
+        }
+        return 0;
+      });
+    } else if (sortOption === 'price') {
+      this.products.sort((a, b) => {
+        if (a && b && a.price && b.price) {
+          return a.price - b.price;
+        }
+        return 0;
+      });
+    }
+  }
 
   addToCart(product: Product) {
     this.cartService.updateCart(product, 1);
@@ -99,11 +125,75 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
     this.titlePopUp = 'Thêm mới sách';
   }
 
-  handleShowMessage(e: any) {
+  handleOpenEdit(actionType: string, params: any){
+    this.actionType = actionType;
+    this.itemSelect = params;
+    this.titlePopUp = 'Chỉnh sửa sách'
+    this.openPopAdd = true
+  }
 
+  handleShowDelete(id: string) {
+    const dialogRef: DynamicDialogRef = this.dialogService.open(
+      PopupDeleteComponent,
+      {
+        data: {
+          name: 'Bạn có chắc chắn muốn xóa?',
+          ok: 'Đồng ý',
+          no: 'Đóng',
+        },
+        header: 'Xác nhận',
+      }
+    );
+    dialogRef.onClose.subscribe((result: any) => {
+      if (result === true) {
+        this.service.deleteBook(id).subscribe(
+          (response: any) => {
+            this.getBooks();
+            this.showMessage(mType.success, 'Thành công', 'Xóa sách thành công');
+          },
+          (error: any) => {
+            console.log({ error });
+            this.showMessage(mType.error, 'Thất bại', error);
+          }
+        );
+      }
+      return false;
+    });
+  }
+
+  handleSubmit(params?: any) {
+    if(this.actionType === 'add'){
+      this.service.addBook(params).subscribe({
+        next: data => {
+          if(data){
+            this.getBooks();
+            this.showMessage(mType.success, 'Thành công', 'Thêm mới sách thành công');
+          }
+        },
+        error: error => {
+          this.showMessage(mType.error, "Thất bại", error)
+        }
+      })
+    }
+    if(this.actionType === 'edit'){
+      this.service.editBook(params, this.itemSelect.id).subscribe({
+        next: data => {
+          this.getBooks();
+          this.showMessage(mType.success, 'Thành công', 'Update sách thành công');
+        },
+        error: err => {
+          this.showMessage(mType.error, "Thất bại", err)
+        },
+      })
+    }
+    if(this.actionType === 'delete'){
+      this.handleShowDelete(params)
+    }
   }
 
   closePopUp(e: any) {
-
+    this.actionType = '';
+    this.openPopAdd = e;
+    this.itemSelect = null;
   }
 }

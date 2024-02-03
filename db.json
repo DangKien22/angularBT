@@ -219,36 +219,13 @@
       "year": "2024"
     },
     {
-      "id": 11,
-      "author": "Đặng Trung Kiên",
-      "code": "f230fh0g3",
       "name": "Sách Giáo Khoa Lớp 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est purus, ultrices in porttitor in, accumsan non quam. Nam consectetur porttitor rhoncus ...",
-      "image": "bamboo-watch.jpg",
-      "price": 65,
-      "category": "SGK",
-      "quantity": 24,
-      "inventoryStatus": "IN STOCK",
-      "rating": 5,
-      "normalPrice": 100,
-      "publisher": "Nhà xuất bản giáo dục",
-      "year": "2024"
-    },
-    {
-      "id": 12,
       "author": "Đặng Trung Kiên",
-      "code": "nvklal433",
-      "name": "Sách tham khảo",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla est purus, ultrices in porttitor in, accumsan non quam. Nam consectetur porttitor rhoncus ...",
-      "image": "black-watch.jpg",
-      "price": 72,
       "category": "SGK",
-      "quantity": 61,
-      "inventoryStatus": "OUT OF STOCK",
-      "rating": 4,
-      "normalPrice": 100,
-      "publisher": "Nhà xuất bản giáo dục",
-      "year": "2024"
+      "inventoryStatus": "IN STOCK",
+      "price": "66",
+      "quantity": 24,
+      "id": 11
     }
   ]
 }

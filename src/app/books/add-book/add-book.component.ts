@@ -24,13 +24,12 @@ export class AddBookComponent implements OnInit {
     public formBuilder: FormBuilder
   ) { }
   public formData: FormGroup = this.formBuilder.group({
-    userName: ["", Validators.required],
-    password: ["", Validators.required],
-    email: ["", Validators.required],
     name: ["", Validators.required],
-    phoneNumber: ["", Validators.required],
-    address: ["", Validators.required],
-    role: ["", Validators.required]
+    author: ["", Validators.required],
+    category: ["", Validators.required],
+    inventoryStatus: ["", Validators.required],
+    price: ["", Validators.required],
+    quantity: ["", Validators.required],
   })
   ngOnInit() {
   }
@@ -48,17 +47,6 @@ export class AddBookComponent implements OnInit {
       this.setValueForm(dataChanges['data']);
     }
 
-    if (dataChanges[this.actionType]) {
-      if (this.actionType === "view") {
-        Object.keys(this.formData.controls).forEach((key) => {
-          this.formData.controls[key].disable();
-        });
-      } else {
-        Object.keys(this.formData.controls).forEach((key) => {
-          this.formData.controls[key].enable();
-        });
-      }
-    }
     if (this.actionType === "add") {
       this.formData.reset();
       this.errorMsg = {};
@@ -69,13 +57,12 @@ export class AddBookComponent implements OnInit {
     if (data) {
       console.log({ data });
       this.formData.patchValue({
-        userName: data.currentValue?.userName,
-        password: data.currentValue?.password,
-        email: data.currentValue?.email,
         name: data.currentValue?.name,
-        phoneNumber: data.currentValue?.phoneNumber,
-        address: data.currentValue?.address,
-        role: data.currentValue?.role
+        author: data.currentValue?.author,
+        category: data.currentValue?.category,
+        inventoryStatus: data.currentValue?.inventoryStatus,
+        price: data.currentValue?.price,
+        quantity: data.currentValue?.quantity,
       });
     }
 

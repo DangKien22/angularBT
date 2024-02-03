@@ -8,6 +8,7 @@ import { msgAdminUser } from 'src/modules/enum/admin-user.enum';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PopupDeleteComponent } from 'src/app/auth/popup-delete/popup-delete.component';
 import { UserService } from '../user.service';
+import { ShareService } from 'src/app/shared/share.service';
 
 interface MsgAdminUser {
   add: string;
@@ -27,18 +28,21 @@ export class AdminUserComponent extends IsBaseComponent implements OnInit {
   titlePopUp = '';
   openPopAdd = false;
   itemSelect: any;
+  roleAdmin: any;
 
   constructor(
     private service: UserService,
     public msg: MessageService,
     public title: Title,
-    public dialogService: DialogService
+    public dialogService: DialogService, 
+    private shareService : ShareService
   ) {
     super(msg);
   }
 
   ngOnInit() {
     this.getListUsers();
+    this.roleAdmin = this.shareService.checkRole()
   }
   handleShowDelete(id: string) {
     const dialogRef: DynamicDialogRef = this.dialogService.open(
@@ -96,7 +100,7 @@ export class AdminUserComponent extends IsBaseComponent implements OnInit {
       next: (data) => {
         if (data) {
           console.log({ data });
-          this.listAdminUser = data;
+          this.listAdminUser = data.reverse();
         }
       },
     });
