@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IsBaseComponent, mType } from 'src/modules/isComponentBase';
 import { MessageService } from 'primeng/api';
+import { handleNavigate } from 'src/app/books/shared/models/book-utils';
 
 @Component({
   selector: 'app-checkout',
@@ -31,7 +32,7 @@ export class CheckoutComponent extends IsBaseComponent implements OnInit {
     private cartService: CartService,
     public formBuilder: FormBuilder,
     public msg: MessageService,
-
+    private router: Router
   ) {
     super(msg)
   }
@@ -47,6 +48,18 @@ export class CheckoutComponent extends IsBaseComponent implements OnInit {
     this.dataSelect = this.cartService.selectedItems;
     this.selectedDelivery = this.deliverys[0]
     this.selectPayment = this.payments[0]
+  }
+
+  getSum(): number {
+    let sum = 0;
+    for (const item of this.dataSelect) {
+      sum += item.price * item.quantityAdd;
+    }
+    return sum;
+  }
+
+  navigateTo() {
+    handleNavigate(this.router, 'cart')
   }
 
   handleSubmit() {
