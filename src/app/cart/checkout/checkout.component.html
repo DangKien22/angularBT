@@ -1,3 +1,74 @@
-<p>
-  checkout works!
-</p>
+<p-toast></p-toast>
+<h2 class="text-center">ĐẶT HÀNG</h2>
+<hr />
+<form [formGroup]="formData" (ngSubmit)="handleSubmit()">
+  <div class="checkout">
+    <div class="checkout_steps">
+      <div class="checkout_steps-address">
+        <span class="font-bold">Họ tên</span>
+        <input pInputText type="text" formControlName="name"/>
+        <div style="margin-top: 5px">
+          <div
+            *ngIf="formData.get('name')?.errors?.['required'] || formData.get('name')?.errors?.['invalidname']"
+            style="color: red"
+          >
+            {{ errorMsg["name"] }}
+          </div>
+        </div>
+      </div>
+      <div class="checkout_steps-address">
+        <span class="font-bold">Địa chỉ giao hàng</span>
+        <input pInputText type="text" formControlName="address"/>
+        <div style="margin-top: 5px">
+          <div
+            *ngIf="formData.get('address')?.errors?.['required'] || formData.get('address')?.errors?.['invalidaddress']"
+            style="color: red"
+          >
+            {{ errorMsg["address"] }}
+          </div>
+        </div>
+      </div>
+      <div class="checkout_steps-address">
+        <span class="font-bold">Phương thức vận chuyển</span>
+        <div class="flex gap-2">
+          <div *ngFor="let delivery of deliverys" class="field-checkbox">
+            <p-radioButton
+              [inputId]="delivery.key"
+              name="delivery"
+              [value]="delivery"
+              [(ngModel)]="selectedDelivery"
+              formControlName="delivery"
+            ></p-radioButton>
+            <label [for]="delivery.key" class="ml-2">{{ delivery.name }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="checkout_steps-address">
+        <span class="font-bold">Phương thức thanh toán</span>
+        <div class="flex gap-2">
+          <div *ngFor="let payment of payments" class="field-checkbox">
+            <p-radioButton
+              [inputId]="payment.key"
+              name="payment"
+              [value]="payment"
+              [(ngModel)]="selectPayment"
+              formControlName="payment"
+            ></p-radioButton>
+            <label [for]="payment.key" class="ml-2">{{ payment.name }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2 flex-wrap-btn">
+        <p-button label="Quay Lại" icon="pi pi-arrow-left"></p-button>
+        <p-button label="Đặt hàng" type="submit"></p-button>
+      </div>
+    </div>
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div *ngFor="let item of dataSelect">
+        <p>{{ item?.name }}: ${{ item?.price * item.quantityAdd }}</p>
+      </div>
+      <p class="border">Tổng: $9.12</p>
+    </div>
+  </div>
+</form>

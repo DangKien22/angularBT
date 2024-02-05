@@ -9,11 +9,32 @@
           <p-table
             responsiveLayout="scroll"
             [value]="dataCart"
+            [(selection)]="selectedProducts"
           >
+          <ng-template pTemplate="header">
+              <tr>
+                 <th style="width: 5%">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th scope="col" class="text-center" style="width: 10%">
+                  Tên Sách
+                </th>
+                <th scope="col" class="text-center" style="width: 20%">
+                  Hình ảnh
+                </th>
+                <th scope="col" class="text-center" style="width: 10%">Giá</th>
+                <th scope="col" class="text-center" style="width: 10%">
+                  Số lượng
+                </th>
+                <th scope="col" class="text-center" style="width: 5%">
+                  Thao tác
+                </th>
+              </tr>
+          </ng-template>
             <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
               <tr>
-                <td>
-                  {{ rowIndex + 1 }}
+                <td style="text-align: left;">
+                    <p-tableCheckbox [value]="row"></p-tableCheckbox>
                 </td>
                 <td>
                   <h3 class="mb-2">{{ row.name }}</h3>
@@ -22,9 +43,10 @@
                   <img
                     [src]="'https://picsum.photos/468/395?random=' + row.id"
                     [alt]="row?.name"
+                    style="width: 20%;"
                   />
                 </td>
-                <td class="font-bold">${{ row?.price }}</td>
+                <td class="font-bold">${{ row?.price * row?.quantityAdd }}</td>
                 <td>
                   <p-inputNumber
                     [(ngModel)]="row.quantityAdd"
@@ -35,7 +57,7 @@
                     incrementButtonIcon="pi pi-plus"
                     decrementButtonIcon="pi pi-minus"
                     [max]="row.quantity"
-                    [min]="0"
+                    [min]="1"
                   ></p-inputNumber>
                 </td>
                 <td>
@@ -74,8 +96,9 @@
         </div>
       </div>
     </div>
+    <h3 *ngIf="dataCart.length === 0" class="text-center">Giỏ hàng trống</h3>
     <div class="flex justify-content-end gap-2 flex-wrap-btn">
       <p-button label="Quay Lại" icon="pi pi-arrow-left" (onClick)="backTo()"></p-button>
-      <p-button label="Đặt hàng"></p-button>
+      <p-button label="Đặt hàng" *ngIf="selectedProducts?.length > 0" (onClick)="checkout()"></p-button>
     </div>
 </div>

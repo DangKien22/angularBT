@@ -10,6 +10,7 @@ import { CartService } from 'src/app/cart/cart.service';
 })
 export class CartComponent implements OnInit {
   dataCart: any;
+  selectedProducts!: any;
   constructor(
     private cartService: CartService,
     private router: Router
@@ -31,7 +32,9 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-
+    const selectedItems = this.dataCart.filter((item: any) => this.selectedProducts?.includes(item));
+    this.cartService.updateSelectedItems(selectedItems);
+    handleNavigate(this.router, '/check-out');
   }
 
 }

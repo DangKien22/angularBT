@@ -10,9 +10,13 @@ export class CartService {
   private cartItems: any[] = [];
   private cartItemsSource = new BehaviorSubject<any[]>([]);
   cartItems$ = this.cartItemsSource.asObservable();
-
+  selectedItems: any[] = [];
   constructor() {
     this.loadCart();
+    const selectedItemsString = localStorage.getItem('selectedItems');
+    if (selectedItemsString) {
+      this.selectedItems = JSON.parse(selectedItemsString);
+    }
   }
 
   private loadCart() {
@@ -38,6 +42,7 @@ export class CartService {
   }
 
   clearCartItem() {
+    localStorage.removeItem('cartItemCount');
     localStorage.removeItem('cartItems');
     this.cartItems = [];
     this.cartItemsSource.next(this.cartItems);
@@ -50,4 +55,14 @@ export class CartService {
     this.cartItemsSource.next(this.cartItems)
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
+
+  updateSelectedItems(items: any[]) {
+    this.selectedItems = items;
+    localStorage.setItem('selectedItems', JSON.stringify(items));
+  }
+
+  completeOrder() {
+    localStorage.removeItem('selectedItems');
+  }
+
 }

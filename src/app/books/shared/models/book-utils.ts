@@ -17,8 +17,5 @@ export function getSeverity(inventoryStatus: string | undefined): string {
 };
 
 export function handleNavigate(router: Router, route: string, queryParams?: any): void {
-    let navigationExtras: NavigationExtras = {
-        queryParams: queryParams,
-    };
-    router.navigate([route], navigationExtras);
+    router.navigate([route], queryParams);
 }
