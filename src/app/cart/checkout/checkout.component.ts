@@ -66,7 +66,8 @@ export class CheckoutComponent extends IsBaseComponent implements OnInit {
     console.log("a", this.formData)
     if (this.formData.valid) {
       this.formData.reset();
-      this.cartService.completeOrder
+      this.cartService.completeOrder;
+      handleNavigate(this.router, 'books')
       this.showMessage(mType.success, 'Thành công', 'Đặt hàng thành công')
     } else {
       Object.keys(this.formData.controls).forEach((key) => {
