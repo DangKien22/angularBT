@@ -36,9 +36,9 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
     private service: BooksService,
     public msg: MessageService,
     private router: Router,
-    private cartService: CartService, 
-    private dialogService : DialogService,
-    private shareService : ShareService
+    private cartService: CartService,
+    private dialogService: DialogService,
+    private shareService: ShareService
   ) {
     super(msg);
   }
@@ -84,19 +84,17 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
   }
 
   navigateTo(id: string | number) {
-    const queryParams = {
-      id: id,
-    };
-    handleNavigate(this.router, 'book-detail', queryParams);
+    console.log(id)
+    handleNavigate(this.router, 'book-detail', { queryParams: { id: id } });
   }
 
   onSortChange(event: any) {
-    const sortOption = event.value; 
-  
+    const sortOption = event.value;
+
     if (sortOption === '!price') {
       this.products.sort((a, b) => {
         if (a && b && a.price && b.price) {
-          return b.price - a.price; 
+          return b.price - a.price;
         }
         return 0;
       });
@@ -125,7 +123,7 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
     this.titlePopUp = 'Thêm mới sách';
   }
 
-  handleOpenEdit(actionType: string, params: any){
+  handleOpenEdit(actionType: string, params: any) {
     this.actionType = actionType;
     this.itemSelect = params;
     this.titlePopUp = 'Chỉnh sửa sách'
@@ -162,10 +160,10 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
   }
 
   handleSubmit(params?: any) {
-    if(this.actionType === 'add'){
+    if (this.actionType === 'add') {
       this.service.addBook(params).subscribe({
         next: data => {
-          if(data){
+          if (data) {
             this.getBooks();
             this.showMessage(mType.success, 'Thành công', 'Thêm mới sách thành công');
           }
@@ -175,7 +173,7 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
         }
       })
     }
-    if(this.actionType === 'edit'){
+    if (this.actionType === 'edit') {
       this.service.editBook(params, this.itemSelect.id).subscribe({
         next: data => {
           this.getBooks();
@@ -186,7 +184,7 @@ export class BooksComponent extends IsBaseComponent implements OnInit {
         },
       })
     }
-    if(this.actionType === 'delete'){
+    if (this.actionType === 'delete') {
       this.handleShowDelete(params)
     }
   }

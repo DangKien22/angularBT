@@ -33,6 +33,7 @@ export class BookDetailComponent extends IsBaseComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const id = params['id'];
+      console.log(id)
       if (id) {
         this.getBookDetail(id);
       }
@@ -41,6 +42,7 @@ export class BookDetailComponent extends IsBaseComponent implements OnInit {
   }
 
   getBookDetail(id?: string | number) {
+    console.log(id)
     this.service.getBookDetail(id).subscribe({
       next: (data) => {
         if (data) {
@@ -74,10 +76,7 @@ export class BookDetailComponent extends IsBaseComponent implements OnInit {
   }
 
   navigateTo(id: string) {
-    const queryParams = {
-      id: id,
-    };
-    handleNavigate(this.router, '/book-detail', queryParams);
+    handleNavigate(this.router, '/book-detail', { queryParams: { id: id } });
   }
 
   addToCart() {

@@ -3,7 +3,7 @@
   <div class="product-detail">
     <div class="product-image">
       <img
-        [src]="'https://picsum.photos/468/395?random=' + dataDetail.id"
+        [src]="'https://picsum.photos/468/395?random=' + dataDetail?.id"
         [alt]="dataDetail?.name"
       />
     </div>
@@ -91,7 +91,7 @@
             incrementButtonClass="p-button-info"
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
-            [max]="dataDetail.quantity"
+            [max]="dataDetail?.quantity"
             [min]="0"
           ></p-inputNumber>
           <p-button label="Add to cart" class="add-to-cart" (click)="addToCart()"></p-button>
@@ -119,16 +119,16 @@
         <div
           class="border-1 surface-border border-round m-2 text-center py-5 px-3"
         >
-          <div class="mb-3 cursor-pointer" (click)="navigateTo(product.id)">
+          <div class="mb-3 cursor-pointer" (click)="navigateTo(product?.id)">
             <img
-              [src]="'https://picsum.photos/468/395?random=' + product.id"
+              [src]="'https://picsum.photos/468/395?random=' + product?.id"
               [alt]="product.name"
               class="w-6 shadow-2"
             />
           </div>
           <div>
-            <h2 class="mb-1 cursor-pointer" (click)="navigateTo(product.id)">{{ product.name }}</h2>
-            <h3 class="mt-0 mb-3">{{ "$" + product.price }}</h3>
+            <h2 class="mb-1 cursor-pointer" (click)="navigateTo(product?.id)">{{ product.name }}</h2>
+            <h3 class="mt-0 mb-3">{{ "$" + product?.price }}</h3>
           </div>
           <p-tag
             [value]="product.inventoryStatus"
